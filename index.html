@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Techno Nugget Rain</title>
+    <style>
+        body {
+            background-color: black;
+            color: #0ff;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3em;
+            margin-top: 50px;
+            text-shadow: 0 0 10px #0ff;
+        }
+        #playButton {
+            background: #0ff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.5em;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #0ff;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        #playButton:hover {
+            background: #f00;
+            box-shadow: 0 0 15px #f00;
+        }
+        .nugget {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/d/d5/Chicken_nugget.png') no-repeat center;
+            background-size: contain;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Techno Nugget Rain 🌌🍗</h1>
+    <button id="playButton">PLAY</button>
+
+    <script>
+        function createNugget() {
+            let nugget = document.createElement("div");
+            nugget.classList.add("nugget");
+            nugget.style.left = Math.random() * window.innerWidth + "px";
+            nugget.style.top = "-50px";
+            document.body.appendChild(nugget);
+
+            let fall = setInterval(() => {
+                let nuggetPos = parseInt(nugget.style.top);
+                nugget.style.top = nuggetPos + 5 + "px";
+                if (nuggetPos > window.innerHeight) {
+                    clearInterval(fall);
+                    nugget.remove();
+                }
+            }, 50);
+        }
+
+        setInterval(createNugget, 500);
+
+        document.getElementById("playButton").addEventListener("click", () => {
+            alert("Get ready for nugget madness!");
+        });
+    </script>
+
+</body>
+</html>
